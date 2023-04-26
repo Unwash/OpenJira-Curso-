@@ -5,11 +5,17 @@ type EntriesActionType =
    | { type: '[Entry] - Add-Entry', payload:Entry }
    | {type: "[Entry] - IsAdding"}
    | {type: "[Entry] - Entry-Updated", payload:Entry}
+   | {type: "[Entry] - Entry-Refresh", payload:Entry[]}
 
 
 export const entriesReducer = (state: EntriesState, action: EntriesActionType) : EntriesState => {
     
     switch (action.type) {
+         case "[Entry] - Entry-Refresh":
+         return {
+            ...state,
+            entries:[...action.payload]
+         }
           case '[Entry] - Add-Entry':
             return {    
                  ...state,
